@@ -1,0 +1,475 @@
+html {
+     scroll-behavior: smooth;
+}
+  
+* {
+      margin: 0;
+     padding: 0;
+     font-family: 'Poppins', sans-serif;
+     box-sizing: border-box;
+}
+
+body {
+     background: #080808;
+     color: #fff;
+     overflow-x: hidden;
+ }
+
+ /* ——— HIDE NATIVE POINTER ——— */
+body, a, button {
+     cursor: none !important;
+   }
+   
+   /* ——— INNER DOT ——— */
+   .custom-cursor {
+     position: fixed;
+     top: 0; left: 0;
+     width: 8px;   /* always 8×8 */
+     height: 8px;
+     background: white;
+     border-radius: 50%;
+     pointer-events: none;
+     transform: translate(-50%, -50%);
+     z-index: 9999;
+     transition: background 0.2s ease;
+   }
+   
+   /* ——— OUTER TRAIL CIRCLE ——— */
+   .cursor-trail {
+     position: fixed;
+     top: 0; left: 0;
+     width: 32px;  /* default size */
+     height: 32px;
+     border: 2px solid white;
+     border-radius: 50%;
+     pointer-events: none;
+     transform: translate(-50%, -50%);
+     z-index: 9998;
+     transition: width 0.3s ease, height 0.3s ease;
+   }
+   
+
+/* ------------------ HEADER / NAVIGATION ------------------ */
+header {
+     background-color: #080808;
+     position: fixed;
+     top: 0;
+     width: 100%;
+     z-index: 1000;
+     padding: 20px 0;
+     box-shadow: none;
+  }  
+
+.nav-container {
+     max-width: 100%;
+     margin: 0;
+     padding: 0 30px;
+     display: flex;
+     justify-content: space-between; /* logo left, nav right */
+     align-items: center;
+}
+
+  
+.logo {
+     max-height: 100px;
+}
+
+nav ul {
+     list-style: none;
+     display: flex;
+     gap: 25px;
+}
+
+nav ul li {
+     list-style: none;
+}
+
+nav ul li a {
+     text-decoration: none;
+     color: #fff;
+     font-weight: 500;
+     font-family: monospace;
+     transition: color 0.3s ease;
+}
+
+nav ul li a span {
+     color: #8a2be2;
+}
+
+nav ul li a:hover {
+     color: #8a2be2;
+}
+
+.menu-toggle {
+     display: none;
+     font-size: 28px;
+     color: white;
+     cursor: pointer;
+}
+
+/* Responsive Nav */
+@media (max-width: 768px) {
+    nav ul {
+         display: none;
+         flex-direction: column;
+         background-color: #111;
+         position: absolute;
+         top: 70px;
+         right: 20px;
+         width: 200px;
+         padding: 15px;
+         border-radius: 10px;
+    }
+
+    nav ul.active {
+         display: flex;
+    }
+
+    .menu-toggle {
+         display: block;
+    }
+}
+
+/* ------------------ HERO SECTION ------------------ */  
+
+
+
+/* only in hero */
+#tsparticles-hero {
+     position: absolute;
+     inset: 0;             /* top:0; right:0; bottom:0; left:0; */
+     z-index: 0;          /* behind .hero-content */
+   }
+   
+   /* style your “Download CV” button */
+   .btn-cv {
+     display: inline-block;
+     margin: 20px 0;
+     padding: 0.75em 1.5em;
+     background-color: #8a2be2;
+     color: #fff;
+     border-radius: 4px;
+     text-decoration: none;
+     font-weight: 500;
+     transition: background-color 0.25s ease;
+   }
+   .btn-cv:hover {
+     background-color: #6a1bb0;
+   }
+   
+
+
+
+
+
+
+
+.hero-section {
+      height: 100vh;
+      background: radial-gradient(circle, #0f0f0f, #000);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0 20px;
+      text-align: left;
+}
+
+.hero-content {
+          position: relative;
+          z-index: 1; /* above particles */
+          max-width: 800px;
+}
+
+.start-tag {
+      font-family: monospace;
+      font-size: 14px;
+      color: #999;
+      margin-bottom: 10px;
+}
+
+.hero-section h1 {
+      font-size: 3em;
+      font-weight: 800;
+      margin-bottom: 10px;
+}
+
+.hero-section .highlight {
+      color: #8a2be2; /* Purple highlight */
+}
+
+.hero-section h2 {
+      font-size: 1.8em;
+      font-style: italic;
+      margin-bottom: 20px;
+      color: #ccc;
+}
+
+
+/* About section layout */
+.about-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 80px 40px;
+      min-height: 100vh;
+  }
+  
+  .about-container {
+      max-width: 1000px;
+      width: 100%;
+      text-align: left;
+      line-height: 1.8;
+  }
+  
+  .about-container h2 {
+      color:#8a2be2   ;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-align: center; 
+  }
+  
+  .about-container p {
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: #ccc;
+      margin-bottom: 20px;
+  }
+
+
+ /* Section Style like About for academics, project and contact section */
+ 
+.content-section {
+     max-width: 1000px;
+     width: 100%;
+     text-align: left;
+     line-height: 1.8;
+ }
+ 
+.content-section h2 {
+     color:#8a2be2;
+     font-size: 3rem;
+     margin-bottom: 20px;
+     text-align: center;
+ }
+.content-section p {
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: #ccc;
+      margin-bottom: 20px;
+  }
+  
+/* ------------------ SECTION TEMPLATE ------------------ */
+
+.section {
+      padding: 100px 20px;
+      max-width: 1000px;
+      text-align: auto;
+}
+
+.section h2 {
+      font-size: 2.8em;
+      margin-bottom: 20px;
+      color:#fff
+}
+
+.section p {
+      font-size: 1.2em;
+      max-width: 800px;
+      margin: auto;
+      color: #ccc;
+}
+.cursor {
+      display: inline-block;
+      font-weight: bold;
+      color: #8a2be2;
+      animation: blink 0.7s steps(1) infinite;
+  }
+  
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* ------------------ NAV LINK STYLING ------------------ */
+.nav-link {
+      font-weight: 500;
+      color: #666; /* gray for inactive */
+      font-size:1.3em;
+      text-decoration: none;
+      font-family: monospace;
+      transition: all 0.3s ease;
+}
+
+.nav-link span {
+      color: #8a2be2; /* purple slash */
+}
+
+.nav-link.active {
+      color: white; /* active = white */
+      font-weight: bold;
+}
+
+.nav-link:hover {
+      color: white;
+}
+.logo {
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+} 
+.logo {
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+  }
+  
+  .logo-text {
+      font-family: monospace;
+      font-size: 2.4em;
+      letter-spacing: -1px; 
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: transform 0.3s ease;
+  }
+  
+  .logo-text .arrow {
+      color: #8a2be2;
+      animation: none;
+  }
+  
+  .logo-text:hover {
+      animation: pulse 1.2s infinite;
+  }
+  
+  @keyframes pulse {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.05); }
+      100% { transform: scale(1); }
+  }
+  .resource-links ul {
+      list-style-type: none;
+      padding-left: 0;
+  }
+  
+  .resource-links li {
+      margin-bottom: 10px;
+      font-size: 1.1em;
+  }
+  
+  .resource-links a {
+      color: #8a2be2;
+      text-decoration: none;
+      transition: color 0.3s ease;
+  }
+  
+  .resource-links a:hover {
+      color: white;
+      text-decoration: underline;
+  }
+  
+  .about-code {
+      font-family: 'Fira Code', monospace;
+      font-size: 18px; /* increased font size */
+      line-height: 2;   
+      color: #ccc;
+      padding: 40px 60px;
+      max-width: 100%; /* removed restriction */
+      width: 90vw;      /* stretch it more */
+      margin: 0 auto;
+      background-color: #080808;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      text-align: left; /* make sure it's left aligned */
+  }
+  
+  .code-wrp {
+      display: block;
+      padding-left: 60px;  /* increased left padding */
+      position: relative;
+  }
+  
+  .code-l {
+      display: flex;
+      position: relative;
+      white-space: pre;
+      font-size: 18px; /* match with above */
+  }
+  
+  .code-l::before {
+      content: attr(data-line-nr);
+      display: inline-block;
+      width: 3em;             /* more space for numbers */
+      color: #555;
+      margin-left: -3.5em;    /* pushes number to the left */
+      text-align: right;
+      padding-right: 1em;     /* extra gap between number and text */
+      user-select: none;
+  }
+  
+  
+  /* Optional timeline dot */
+   .timeline::before {
+       content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      height: 100%;
+      width: 2px;
+      background-color: #8a2be2;
+      opacity: 0.4;
+  }
+  
+  /* Adjust if needed */
+  @media screen and (max-width: 768px) {
+    .about-code {
+      padding: 20px 30px;
+    }
+  }
+  .section-heading {
+      font-size: 3em;
+      text-align: center;
+      font-weight: 800;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+  }
+  
+  .section-heading.purple {
+      color: #8a2be2;
+      animation: fadeInUp 1s ease-in-out;
+  }
+  
+  @keyframes fadeInUp {
+       0% {
+           opacity: 0;
+           transform: translateY(20px);
+     }
+    100% {
+           opacity: 1;
+           transform: translateY(0);
+     }
+} 
+.section p {
+      text-align: justify;
+      font-size: 1.15em;
+      line-height: 1.7;
+      max-width: 900px;
+      margin: 0 auto 20px auto;
+      color: #ddd;
+  }
+
+.section-content {
+      max-width: 1000px;
+      width: 100%;
+      margin: 0 auto;
+      text-align: left;
+      line-height: 1.8;
+      padding: 20px;
+     }
