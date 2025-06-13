@@ -100,7 +100,7 @@ function animateTrail() {
 }
 requestAnimationFrame(animateTrail);
 
-// on nav‐link hover: only grow the outer circle & tint the dot black
+// on nav-link hover: grow the outer circle and turn the inner dot white to match the background
 document.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('mouseenter', () => {
     outerRing.style.width  = '40px';
