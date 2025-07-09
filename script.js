@@ -105,7 +105,7 @@ document.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('mouseenter', () => {
     outerRing.style.width  = '40px';
     outerRing.style.height = '40px';
-    innerDot.style.background = 'white'; // match your bg for “invisible” dot
+    innerDot.style.background = 'white'; 
   });
   link.addEventListener('mouseleave', () => {
     outerRing.style.width  = '32px';
@@ -113,3 +113,107 @@ document.querySelectorAll('.nav-link').forEach(link => {
     innerDot.style.background = 'white';
   });
 });
+// invert cursor over any .light-bg area
+const lightAreas = document.querySelectorAll('.light-bg');
+lightAreas.forEach(area => {
+  area.addEventListener('mouseenter', () => {
+    document.body.classList.add('light-cursor');
+  });
+  area.addEventListener('mouseleave', () => {
+    document.body.classList.remove('light-cursor');
+  });
+});
+
+// Highlight active nav link on scroll
+const sections = document.querySelectorAll('.about-section, .hero-section, .skills-section, .projects-section');
+const navLinks = document.querySelectorAll('.nav-link');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  const scrollPos = window.scrollY;
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    const sectionHeight = section.offsetHeight;
+    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+      current = section.getAttribute('id');
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === `#${current}`) {
+      link.classList.add('active');
+    }
+  });
+});
+
+// Scroll animations
+const animatedElements = document.querySelectorAll('.about-section, .skills-section, .projects-section');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+animatedElements.forEach(element => {
+  element.classList.add('fade-in');
+  observer.observe(element);
+});
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const targetId = this.getAttribute('href');
+    if (targetId === '#') return;
+
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      // Account for fixed header
+      const headerOffset = 80;
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+
+      // Close mobile menu if open
+      const navMenu = document.querySelector("nav ul");
+      if (navMenu && navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+        const menuToggle = document.querySelector(".menu-toggle");
+        if (menuToggle) {
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      }
+    }
+  });
+});
+
+// Contact form handling
+const contactForm = document.getElementById('contact-form');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formContainer = contactForm.parentElement;
+    contactForm.style.display = 'none';
+
+    const successMessage = document.createElement('div');
+    successMessage.className = 'success-message';
+    successMessage.innerHTML = `
+      <h3>Thank you for your message!</h3>
+      <p>I'll get back to you as soon as possible.</p>
+    `;
+    formContainer.appendChild(successMessage);
+  });
+}
